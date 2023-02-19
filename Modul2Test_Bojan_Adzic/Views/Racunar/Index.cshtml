@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+@model List<Racunar>
+<html>
+    <head>
+        <title>Racunari</title>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>Naziv</th>
+                <th>Broj godina garancije</th>
+                <th>Cena</th>
+                <th>Tip</th>
+                <th>Studentski popust</th>
+            </tr>
+        @foreach(Racunar r in Model)
+        {
+            <tr style="background-color: @(r.Cena > 100000 ? "orange" : "green")">
+                <td>@r.Naziv</td>
+                <td>@r.BrojGodinaGarancije</td>
+                <td>@r.Cena</td>
+                <td>@r.Tip</td>
+                <td>@(r.StudentskiPopust ? "Da" : "Ne")</td>
+                <td><a href="/Racunar/Azuriraj?Id=@r.Id">Azuriraj</a></td>
+                <td><a href="/Komponenta/Index?RacunarId=@r.Id">Izlistaj komponente</a></td>
+            </tr>
+        }
+        </table>
+        <a href="Racunar/Dodaj">Dodaj racunar</a>
+    </body>
+</html>

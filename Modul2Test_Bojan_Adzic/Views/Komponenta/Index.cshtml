@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+@model Modul2Test_Bojan_Adzic.ViewModels.KomponentaKomponente
+<html>
+<head>
+    <title>Racunari</title>
+</head>
+<body>
+    <h1>Komponente za racunar Id: @Model.RacunarId</h1>
+    <h3>Opisno za komponenta.racunarId @Model.Komponenta.RacunarId</h3>
+    <table border="1">
+        <tr>
+            <th>Ime</th>
+            <th>Godina proizvodnje</th>
+            <th>Tip</th>
+        </tr>
+        @foreach (Komponenta k in Model.Komponente)
+        {
+            <tr>
+                <td>@k.Ime</td>
+                <td>@k.GodinaProizvodnje</td>
+                <td>@k.Tip</td>
+                <td><a href="/Komponenta/Obrisi?Id=@(k.Id)&RacunarId=@Model.RacunarId">Obrisi</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Komponenta/Ovogodisnje?RacunarId=@Model.RacunarId">Izlistaj komponente iz ove godine</a>
+    <br />
+    <a href="/Komponenta/SortImeRastuce?RacunarId=@Model.RacunarId">Izlistaj Po nazivu Rastuce</a>
+    <br />
+    <a href="/Komponenta/SortImeOpadajuce?RacunarId=@Model.RacunarId">Izlistaj po nazivu opadajuce</a>
+    <form action="/Komponenta/Dodaj" method="post">
+        <input type="hidden" name="RacunarId" id="RacunarId" value="@Model.RacunarId" />
+        <table>
+            <tr>
+                <th>Ime</th>
+                <td><input type="text" name="Ime" id="Ime" value="@Model.Komponenta.Ime" /></td>
+            </tr>
+            <tr>
+                <th>Godina proizvodnje</th>
+                <td><input type="text" name="GodinaProizvodnje" id="GodinaProizvodnje" value="@Model.Komponenta.GodinaProizvodnje" /></td>
+            </tr>
+            <tr>
+                <th>Tip</th>
+                <td><input type="text" name="Tip" id="Tip" value="@Model.Komponenta.Tip" /></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Dodaj komponentu"/></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

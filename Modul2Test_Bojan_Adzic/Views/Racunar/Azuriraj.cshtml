@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+@model Racunar
+<html>
+<head>
+    <title>Azuriraj racunar</title>
+    <script src="~/js/validacija.js"></script>
+</head>
+<body>
+    <form action="/Racunar/Azuriraj" method="post" onsubmit="return validacija()">
+        <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+    <table>
+        <tr>
+            <th>Naziv</th>
+            <td><input type="text" name="Naziv" id="Naziv" value="@Model.Naziv" /></td>
+            <td>@Html.ValidationMessageFor(m => m.Naziv)</td>
+            <td><span id="NazivGreska" style="color: red;"></span></td>
+        </tr>
+        <tr>
+            <th>Broj godina garancije</th>
+            <td><input type="number" name="BrojGodinaGarancije" id="BrojGodinaGarancije" value="@Model.BrojGodinaGarancije" /></td>
+            <td>@Html.ValidationMessageFor(m => m.BrojGodinaGarancije)</td>
+            <td><span id="BrojGodinaGarancijeGreska" style="color: red;"></span></td>
+        </tr>
+        <tr>
+            <th>Cena</th>
+            <td><input type="number" name="Cena" id="Cena" value="@Model.Cena" /></td>
+            <td>@Html.ValidationMessageFor(m => m.Cena)</td>
+            <td><span id="CenaGreska" style="color: red;"></span></td>
+        </tr>
+        <tr>
+            <th>Tip</th>
+            <td><input type="text" name="Tip" id="Tip" value="@Model.Tip" /></td>
+            <td>@Html.ValidationMessageFor(m => m.Tip)</td>
+            <td><span id="TipGreska" style="color: red;"></span></td>
+        </tr>
+        <tr>
+            <th>Studentski Popust</th>
+            <td>
+                <select name="StudentskiPopust" id="StudentskiPopust">
+                    @if (Model.StudentskiPopust)
+                    {
+                        <option value="0">Ne</option>
+                        <option value="1" selected>Da</option>
+                    }
+                    else
+                    {
+                        <option value="0">Ne</option>
+                        <option value="1">Da</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr><td><input type="submit" value="Izmeni racunar" /></td></tr>
+    </table>
+    </form>
+</body>
+</html>
